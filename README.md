@@ -38,11 +38,11 @@ Active Directory
 </p>
 <br />
 
-<p>
-<img src="https://i.imgur.com/DJmEXEB.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<p><img width="1518" height="821" alt="client pc" src="https://github.com/user-attachments/assets/62267959-c3fb-41cc-b418-b25ea6a92f00" />
+
 </p>
 <p>
-Remote Desktop
+Remote Desktop or Client PC
 </p>
 <br />
 
