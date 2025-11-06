@@ -43,6 +43,7 @@ Active Directory
 </p>
 Setup Domain Controller in Azure
 —
+STEP 1
 
 Create a Resource Group
 
@@ -53,12 +54,16 @@ Create the Domain Controller VM (Windows Server 2022) named “DC-1”
 Username: labuser
 Password: Cyberlab123!
 
+STEP 2
+
 After VM is created, set Domain Controller’s NIC Private IP address to be static
 
 Log into the VM and disable the Windows Firewall (for testing connectivity)
 
 Setup Client-1 in Azure
 —
+
+STEP 3
 
 Create the Client VM (Windows 10) named “Client-1”
 
@@ -72,22 +77,32 @@ After VM is created, set Client-1’s DNS settings to DC-1’s Private IP addres
 
 From the Azure Portal, restart Client-1
 
+STEP 3
+
 Login to Client-1
 
 Attempt to ping DC-1’s private IP address
 
 Ensure the ping succeeded
 
+STEP 4
+
 From Client-1, open PowerShell and run ipconfig /all
 
 The output for the DNS settings should show DC-1’s private IP Address
 
 --Next
-Install Active Directory
+
+STEP 5
+
+Install/Initiate Active Directory
 —
+
 Login to DC-1 and install Active Directory Domain Services
 Promote as a DC: Setup a new forest as mydomain.com (can be anything, just remember what it is)
 Restart and then log back into DC-1 as user: mydomain.com\labuser
+
+STEP 6 
 
 Create a Domain Admin user within the domain
 —
@@ -101,16 +116,21 @@ User jane_admin as your admin account from now on
 
 Join Client-1 to your domain (mydomain.com)
 —
+
+STEP 7
+
 From the Azure Portal, set Client-1’s DNS settings to the DC’s Private IP address (Already done)
 From the Azure Portal, restart Client-1 (Already done)
 Login to Client-1 as the original local admin (labuser) and join it to the domain (computer will restart)
 Login to the Domain Controller and verify Client-1 shows up in ADUC
 Create a new OU named “_CLIENTS” and drag Client-1 into there
 
-Finish the lab, but do not delete the VMs in Azure. We will use them for upcoming labs.
+
 If you are done for the day and want to save money, simply “Stop”/turn off the VMs within the Azure Portal
 
-Part 2
+Part 2--
+
+STEP 8
 
 Turn on the DC-1 and Client-1 VMs in the Azure Portal if they are off.
 Setup Remote Desktop for non-administrative users on Client-1
@@ -122,6 +142,7 @@ Allow “domain users” access to remote desktop
 You can now log into Client-1 as a normal, non-administrative user now
 Normally you’d want to do this with Group Policy that allows you to change MANY systems at once (maybe a future lab)
 
+STEP 9 
 
 Create a bunch of additional users and attempt to log into client-1 with one of the users
 —
@@ -141,6 +162,8 @@ Remote Desktop or Client PC
 
 Network file sharing and permissions
 
+STEP 10
+
 Create some sample file shares with various permissions
 Connect/log into DC-1 as your domain admin account (mydomain.com\jane_admin)
 Connect/log into Client-1 as a normal user (mydomain\<someuser>)
@@ -151,9 +174,13 @@ Folder: “write-access”,  Group: “Domain Users”, Permissions: “Read/Wri
 Folder: “no-access”, Group: “Domain Admins”, “Permissions: “Read/Write”
 (Skip accounting for now)
 
+STEP 11
+
 Attempt to access file shares as a normal user
 On Client-1, navigate to the shared folder (start, run, \\dc-1)
 Try to access the folders you just created. Which folders can you access? Which folders can you create stuff in? Does it make sense?
+
+STEP 12
 
 Create an “ACCOUNTANTS” Security Group, assign permissions, an test access
 Go back to DC-1, in Active Directory, create a security group called “ACCOUNTANTS”
